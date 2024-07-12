@@ -1,7 +1,0 @@
-
-@hostName = https://api.themoviedb.org/3/
-@apiKey = 29e9c21417a5cdd0f56b401142fdba10
-@mediaType = person
-@time = week
-### Get Trending
-GET {{hostName}}/trending/{{mediaType}}/{{time}}?api_key={{apiKey}}
