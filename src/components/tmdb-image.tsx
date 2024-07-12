@@ -26,9 +26,7 @@ export default function TmdbImage({
   sizes?: string;
 }) {
   const route = useRouter();
-  const classNames = clsx(
-    id && type && 'hover:border-white  hover:cursor-pointer transition'
-  );
+  const classNames = clsx(id && type && 'hover:cursor-pointer transition');
   return (
     <Image
       src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_URL}${src}`}
