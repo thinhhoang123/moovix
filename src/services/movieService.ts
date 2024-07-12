@@ -16,3 +16,8 @@ export async function GetUpComing(page = 1) {
 export async function GetTopRated(page = 1) {
   return GET(`movie/top_rated?page=${page}`);
 }
+
+export async function GetDetail(id: string) {
+  const response = await GET(`movie/${id}`);
+  return await response;
+}

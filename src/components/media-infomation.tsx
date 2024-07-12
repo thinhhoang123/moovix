@@ -28,23 +28,21 @@ export default async function MediaInformation({
   const logo = movieImage?.logos[0]?.file_path;
   return (
     <div className="absolute z-10 h-full flex items-end bg-gradient-to-t from-black w-full">
-      <div className="flex flex-col container">
-        <div className="sm:w-full xl:w-1/2 flex flex-col gap-2 mb-5">
-          <TmdbImage src={logo} height={250} width={250} alt="logo" />
-          {!logo && <h1 className="text-3xl font-bold">{title}</h1>}
-          {generes ? (
-            <div className="flex gap-2">
-              {generes?.map((genere) => {
-                return (
-                  <Badge key={genere.id} variant="outline">
-                    {genere.name}
-                  </Badge>
-                );
-              })}
-            </div>
-          ) : null}
-          <p className="text-gray-300">{describe}</p>
-        </div>
+      <div className="w-full  flex flex-col gap-4 mb-5 container">
+        <TmdbImage src={logo} height={250} width={250} alt="logo" />
+        {!logo && <h1 className="text-3xl font-bold">{title}</h1>}
+        {generes ? (
+          <div className="flex gap-2">
+            {generes?.map((genere) => {
+              return (
+                <Badge key={genere.id} variant="secondary">
+                  {genere.name}
+                </Badge>
+              );
+            })}
+          </div>
+        ) : null}
+        <p className="text-gray-300 sm:w-full md:w-1/2">{describe}</p>
       </div>
     </div>
   );
