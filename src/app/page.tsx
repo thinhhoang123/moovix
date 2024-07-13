@@ -8,6 +8,7 @@ import {
 import { GetTrending } from '@/services/trendingService';
 import UpComingMovie from './_components/up-coming-movie';
 import TopRatedMovie from './_components/top-rated-movie';
+import TVOnAir from './_components/on-air-tv';
 
 export default async function Home() {
   const data = await GetTrending();
@@ -38,8 +39,8 @@ export default async function Home() {
         </CarouselContent>
       </Carousel>
       <UpComingMovie />
+      <TVOnAir />
       <TopRatedMovie />
     </>
   );
 }
-

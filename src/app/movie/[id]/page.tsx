@@ -1,15 +1,16 @@
+import CastAndCrew from '@/components/cast-and-crew';
 import MediaInformation from '@/components/media-infomation';
 import TmdbImage from '@/components/tmdb-image';
 import { MediaType } from '@/enum/mediaType';
 import { IMovieDetail } from '@/models/IMovieDetail';
-import { GetDetail } from '@/services/movieService';
+import { GetDetail } from '@/services/mediaService';
 
 export default async function MovieId({ params }: { params: { id: string } }) {
   const { id } = params;
-  const detailMovie: IMovieDetail = await GetDetail(id);
+  const detailMovie: IMovieDetail = await GetDetail(id, MediaType.MOVIE);
   return (
-    <>
-      <div className="">
+    <section>
+      <div className="h-screen">
         <TmdbImage
           src={detailMovie.backdrop_path!}
           fill
@@ -26,6 +27,10 @@ export default async function MovieId({ params }: { params: { id: string } }) {
           type={MediaType.MOVIE}
         />
       </div>
-    </>
+      <div className="container">
+        {/* Cast & crew */}
+        <CastAndCrew type={MediaType.MOVIE} id={id} />
+      </div>
+    </section>
   );
 }

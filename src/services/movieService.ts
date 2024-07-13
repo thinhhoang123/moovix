@@ -1,23 +1,21 @@
 'use server';
 import { GET } from './fetchServices';
 
-export async function getMovieImage(id: string, type: string) {
-  const response = await GET(
-    `${type}/${id}/images?include_image_language=en&language=en`
-  );
-  return await response;
-}
-
+/**
+ * Fetches upcoming movies from the API.
+ * @param {number} page - The page number for pagination (default is 1).
+ * @returns {Promise} - A promise that resolves to the response from the API.
+ */
 export async function GetUpComing(page = 1) {
   const response = await GET(`movie/upcoming?page=${page}`);
-  return await response;
+  return await response; // Return the API response
 }
 
+/**
+ * Fetches top-rated movies from the API.
+ * @param {number} page - The page number for pagination (default is 1).
+ * @returns {Promise} - A promise that resolves to the response from the API.
+ */
 export async function GetTopRated(page = 1) {
-  return GET(`movie/top_rated?page=${page}`);
-}
-
-export async function GetDetail(id: string) {
-  const response = await GET(`movie/${id}`);
-  return await response;
+  return GET(`movie/top_rated?page=${page}`); // Return the API response directly
 }
