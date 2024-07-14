@@ -32,9 +32,12 @@ export default function TmdbImage({
       src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_URL}${src}`}
       width={width}
       height={height}
-      alt={alt}
+      alt={alt ?? 'image'}
       className={[className, classNames].join(' ')}
-      onClick={() => id && type && route.push(`/${type}/${id}`)}
+      onClick={() => {
+        console.log('click');
+        id && type && route.push(`/${type}/${id}`);
+      }}
       fill={fill}
       sizes={sizes}
     />

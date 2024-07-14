@@ -9,10 +9,11 @@ import { ModeToggle } from '../mode-toggle';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const headerItem = [
   {
-    href: '#',
+    href: '/movie',
     item: 'Movies',
   },
   {
@@ -46,7 +47,7 @@ export default function AppHeader() {
   return (
     <header
       className={cn(
-        'fixed top-0 flex h-16 items-center gap-4 z-10 px-4 md:px-6 w-full transition ease-in-out delay-150',
+        'fixed top-0 flex h-16 items-center gap-4 z-50 px-4 md:px-6 w-full transition ease-in-out delay-150',
         isScroll
           ? 'backdrop-blur bg-background/50 supports-[backdrop-filter]:bg-black/60'
           : ' bg-gradient-to-b from-black'
@@ -57,15 +58,13 @@ export default function AppHeader() {
           href="/"
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
-          <div className="mx-auto grid w-full max-w-6xl gap-2">
-            <h1 className="text-2xl font-bold text-white">Moovix</h1>
-          </div>
+          <Image src="/moovix.svg" height={100} width={300} alt="moovix logo" />
         </Link>
         {headerItem.map((item) => {
           return (
             <Link
               href={item.href}
-              key={item.href}
+              key={item.item}
               className={cn(
                 ' transition-colors hover:text-primary drop-shadow-2xl',
                 pathname.includes(item.href) ? activeItem : 'text-white'
@@ -100,7 +99,7 @@ export default function AppHeader() {
               return (
                 <Link
                   href={item.href}
-                  key={item.href}
+                  key={item.item}
                   className={cn(
                     'text-muted-foreground transition-colors hover:text-foreground',
                     pathname.includes(item.href) ? activeItem : 'text-white'

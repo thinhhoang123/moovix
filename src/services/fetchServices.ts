@@ -10,7 +10,7 @@ async function FetchServices({
   endpoint: string;
   method: string;
 }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${endpoint}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${endpoint}`, {
     method,
     headers: {
       accept: 'application/json',

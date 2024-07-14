@@ -2,15 +2,13 @@ import Title from '@/components/title';
 import TmdbImage from '@/components/tmdb-image';
 import { Button } from '@/components/ui/button';
 import { MediaType } from '@/enum/mediaType';
-import EMoiveTabList from '@/enum/movieTabList';
-import { GetUpComing } from '@/services/movieService';
-import Link from 'next/link';
+import { GetOnAir } from '@/services/tvService';
 
-export default async function UpComingMovie() {
-  const data = await GetUpComing();
+export default async function TVOnAir() {
+  const data = await GetOnAir();
   return (
     <section className="container flex flex-col gap-2 mt-4">
-      <Title title="Up Comming Movie 🍿" />
+      <Title title="On the air ✈" />
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
         {data.results.map((item: any, index: number) => {
           return (
@@ -20,7 +18,7 @@ export default async function UpComingMovie() {
               width={200}
               height={200}
               alt={item.title}
-              type={MediaType.MOVIE}
+              type={MediaType.TV}
               id={item.id.toString()}
               className="border-4 border-transparent hover:border-primary hover:scale-105 w-auto"
             />
@@ -28,9 +26,7 @@ export default async function UpComingMovie() {
         })}
       </div>
       <div className="w-full flex justify-center">
-        <Link href={`/movie?tab=${EMoiveTabList.UPCOMING}`}>
-          <Button>See more up coming movie</Button>
-        </Link>
+        <Button>See more TV shows on air</Button>
       </div>
     </section>
   );
