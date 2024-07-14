@@ -26,7 +26,7 @@ export default async function TVOnAir() {
         })}
       </div>
       <div className="w-full flex justify-center">
-        <Button>See more up coming movie</Button>
+        <Button>See more TV shows on air</Button>
       </div>
     </section>
   );

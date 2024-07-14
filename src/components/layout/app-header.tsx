@@ -9,6 +9,7 @@ import { ModeToggle } from '../mode-toggle';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const headerItem = [
   {
@@ -57,9 +58,7 @@ export default function AppHeader() {
           href="/"
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
-          <div className="mx-auto grid w-full max-w-6xl gap-2">
-            <h1 className="text-2xl font-bold text-white">Moovix</h1>
-          </div>
+          <Image src="/moovix.svg" height={100} width={300} alt="moovix logo" />
         </Link>
         {headerItem.map((item) => {
           return (

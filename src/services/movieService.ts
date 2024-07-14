@@ -19,3 +19,11 @@ export async function GetUpComing(page = 1) {
 export async function GetTopRated(page = 1) {
   return GET(`movie/top_rated?page=${page}`); // Return the API response directly
 }
+
+export async function GetPopular(page = 1) {
+  return GET(`movie/popular?page=${page}`); // Return the API response directly
+}
+
+export async function GetNowPlaying(page = 1) {
+  return GET(`movie/now_playing?page=${page}`); // Return the API response directly
+}

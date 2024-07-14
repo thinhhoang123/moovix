@@ -2,7 +2,9 @@ import Title from '@/components/title';
 import TmdbImage from '@/components/tmdb-image';
 import { Button } from '@/components/ui/button';
 import { MediaType } from '@/enum/mediaType';
+import EMoiveTabList from '@/enum/movieTabList';
 import { GetUpComing } from '@/services/movieService';
+import Link from 'next/link';
 
 export default async function UpComingMovie() {
   const data = await GetUpComing();
@@ -26,7 +28,9 @@ export default async function UpComingMovie() {
         })}
       </div>
       <div className="w-full flex justify-center">
-        <Button>See more up coming movie</Button>
+        <Link href={`/movie?tab=${EMoiveTabList.UPCOMING}`}>
+          <Button>See more up coming movie</Button>
+        </Link>
       </div>
     </section>
   );
