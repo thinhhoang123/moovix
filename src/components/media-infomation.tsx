@@ -4,6 +4,7 @@ import { IGenre } from '@/models/IGener';
 import TmdbImage from '@/components/tmdb-image';
 import { MediaType } from '@/enum/mediaType';
 import { GetMediaImage } from '@/services/mediaService';
+import { Typography } from './typo';
 
 interface MediaInformationProps {
   title: string;
@@ -42,7 +43,9 @@ export default async function MediaInformation({
             })}
           </div>
         ) : null}
-        <p className="text-gray-300 sm:w-full md:w-1/2">{describe}</p>
+        <Typography level="muted" className="sm:w-full md:w-1/2">
+          {describe}
+        </Typography>
       </div>
     </div>
   );

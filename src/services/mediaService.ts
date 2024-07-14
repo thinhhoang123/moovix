@@ -22,3 +22,8 @@ export async function GetDetail(id: string, type: string) {
   const response = await GET(`${type}/${id}`);
   return await response; // Return the API response
 }
+
+export async function GetExternalIDs(id: string, type: string) {
+  const response = await GET(`${type}/${id}/external_ids`);
+  return await response;
+}
