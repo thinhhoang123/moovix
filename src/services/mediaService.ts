@@ -27,3 +27,10 @@ export async function GetExternalIDs(id: string, type: string) {
   const response = await GET(`${type}/${id}/external_ids`);
   return await response;
 }
+
+export async function GetRecommendations(id: string, type: string) {
+  const response = await GET(
+    `${type}/${id}/recommendations?language=en-US&page=1`
+  );
+  return await response;
+}

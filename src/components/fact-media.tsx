@@ -7,6 +7,7 @@ import { GetExternalIDs } from '@/services/mediaService';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from './ui/button';
+import { SiFacebook, SiInstagram, SiX } from '@icons-pack/react-simple-icons';
 
 interface IFactMediaProps {
   id: string;
@@ -28,7 +29,7 @@ export default function FactMedia({
   original_language,
 }: IFactMediaProps) {
   return (
-    <Card className="w-full p-4 flex flex-col gap-4">
+    <Card className="w-full p-4 flex flex-col gap-4 h-fit">
       <SocialLink id={id} type={mediaType} />
       {/* Original Name */}
       {original_name ? (
@@ -85,19 +86,19 @@ async function SocialLink({ id, type }: { id: string; type: MediaType }) {
     {
       name: 'facebook',
       socialLink: `https://www.facebook.com/${data.facebook_id}`,
-      icon: '/media/facebook.svg',
+      icon: <SiFacebook title="Facebook" color="#0866FF" size={24} />,
       color: '#0866FF',
     },
     {
       name: 'twitter',
       socialLink: `https://twitter.com/${data.twitter_id}`,
-      icon: '/media/x.svg',
+      icon: <SiX title="Twitter" size={24} />,
       color: '#0866FF',
     },
     {
       name: 'instagram',
       socialLink: `https://instagram.com/${data.instagram_id}`,
-      icon: '/media/instagram.svg',
+      icon: <SiInstagram title="Instagram" color="#E4405F" size={24} />,
       color: '#0866FF',
     },
   ];
@@ -107,13 +108,7 @@ async function SocialLink({ id, type }: { id: string; type: MediaType }) {
         return (
           <Link href={media.socialLink} key={media.name} target="_blank">
             <Button size="icon" variant="outline">
-              <Image
-                src={media.icon}
-                width={30}
-                height={30}
-                alt={media.name}
-                className="fill-[#0866FF]"
-              />
+              {media.icon}
             </Button>
           </Link>
         );
