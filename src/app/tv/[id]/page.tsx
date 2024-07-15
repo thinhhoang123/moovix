@@ -43,6 +43,7 @@ export default async function TVId({ params }: { params: { id: string } }) {
           status={data.status}
           type={data.type}
           networks={data.networks}
+          homepage={data.homepage}
         />
       </div>
     </section>

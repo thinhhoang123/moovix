@@ -5,9 +5,9 @@ import { Card } from './ui/card';
 import { MediaType } from '@/enum/mediaType';
 import { GetExternalIDs } from '@/services/mediaService';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from './ui/button';
 import { SiFacebook, SiInstagram, SiX } from '@icons-pack/react-simple-icons';
+import { Link as LinkIcon } from 'lucide-react';
 
 interface IFactMediaProps {
   id: string;
@@ -17,6 +17,7 @@ interface IFactMediaProps {
   networks?: INetwork[];
   type?: string;
   original_language: string;
+  homepage: string;
 }
 
 export default function FactMedia({
@@ -27,10 +28,11 @@ export default function FactMedia({
   networks,
   type,
   original_language,
+  homepage,
 }: IFactMediaProps) {
   return (
     <Card className="w-full p-4 flex flex-col gap-4 h-fit">
-      <SocialLink id={id} type={mediaType} />
+      <SocialLink id={id} type={mediaType} homepage={homepage} />
       {/* Original Name */}
       {original_name ? (
         <div className="flex flex-col gap-1">
@@ -80,26 +82,36 @@ export default function FactMedia({
   );
 }
 
-async function SocialLink({ id, type }: { id: string; type: MediaType }) {
+async function SocialLink({
+  id,
+  type,
+  homepage,
+}: {
+  id: string;
+  type: MediaType;
+  homepage: string;
+}) {
   const data = await GetExternalIDs(id, type);
   const mediaList = [
     {
       name: 'facebook',
       socialLink: `https://www.facebook.com/${data.facebook_id}`,
       icon: <SiFacebook title="Facebook" color="#0866FF" size={24} />,
-      color: '#0866FF',
     },
     {
       name: 'twitter',
       socialLink: `https://twitter.com/${data.twitter_id}`,
       icon: <SiX title="Twitter" size={24} />,
-      color: '#0866FF',
     },
     {
       name: 'instagram',
       socialLink: `https://instagram.com/${data.instagram_id}`,
       icon: <SiInstagram title="Instagram" color="#E4405F" size={24} />,
-      color: '#0866FF',
+    },
+    {
+      name: 'homepage',
+      socialLink: homepage,
+      icon: <LinkIcon size={24} />,
     },
   ];
   return (

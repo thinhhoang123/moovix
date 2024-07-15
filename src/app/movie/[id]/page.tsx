@@ -42,6 +42,7 @@ export default async function MovieId({ params }: { params: { id: string } }) {
           original_name={data.original_title}
           original_language={data.original_language}
           status={data.status}
+          homepage={data.homepage ?? ''}
         />
       </div>
     </section>
