@@ -51,7 +51,7 @@ export default function FactMedia({
       {networks ? (
         <div className="flex flex-col gap-1">
           <Typography level="h4">Network</Typography>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             {networks.map((network: INetwork) => {
               return (
                 <TmdbImage

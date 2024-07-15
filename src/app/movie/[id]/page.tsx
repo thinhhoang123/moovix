@@ -12,7 +12,7 @@ export default async function MovieId({ params }: { params: { id: string } }) {
   const { id } = params;
   const data: IMovieDetail = await GetDetail(id, MediaType.MOVIE);
   return (
-    <section>
+    <section className="w-screen">
       <div className="h-screen">
         <TmdbImage
           src={data.backdrop_path!}
@@ -30,8 +30,8 @@ export default async function MovieId({ params }: { params: { id: string } }) {
           type={MediaType.MOVIE}
         />
       </div>
-      <div className="grid grid-cols-4 gap-6 container mt-4">
-        <div className="col-span-3 flex flex-col gap-4">
+      <div className="md:grid md:grid-cols-4 flex flex-col-reverse gap-6 container mt-4">
+        <div className="md:col-span-3 flex flex-col gap-4">
           <CastAndCrew type={MediaType.MOVIE} id={id} />
           <Separator />
           <Recommendations id={id} type={MediaType.MOVIE} />

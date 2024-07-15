@@ -29,8 +29,8 @@ export default async function TVId({ params }: { params: { id: string } }) {
           type={MediaType.TV}
         />
       </div>
-      <div className="grid grid-cols-4 gap-6 container mt-4">
-        <div className="col-span-3 flex flex-col gap-4">
+      <div className="md:grid md:grid-cols-4 flex flex-col-reverse gap-6 container mt-4">
+        <div className="md:col-span-3 flex flex-col gap-4">
           <CastAndCrew type={MediaType.TV} id={id} />
           <Separator />
           <Recommendations id={id} type={MediaType.TV} />
