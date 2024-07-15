@@ -1,9 +1,11 @@
 import { ReactNode } from 'react';
 import AppHeader from './app-header';
+import ScrollOnTop from './scroll-on-top';
 
 export function AppLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen w-full flex-col">
+      <ScrollOnTop />
       <AppHeader />
       {/* min-h-[calc(100vh_-_theme(spacing.16))] */}
       <main className="flex flex-1 flex-col bg-muted/40 md:gap-8">

@@ -49,11 +49,10 @@ export default function MoviePage({
       content: <MovieUpComing />,
     },
   ];
-  console.log(defaultTab);
   return (
     <section className="mt-20 container">
       <Tabs defaultValue={defaultTab} className="w-full">
-        <TabsList className="sticky top-[64px] z-10">
+        <TabsList className=" z-10 flex items-center justify-start flex-wrap h-auto w-fit drop-shadow-xl">
           {tabList.map((tab) => {
             return (
               <TabsTrigger value={tab.value} key={tab.name}>
