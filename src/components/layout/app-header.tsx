@@ -21,8 +21,8 @@ const headerItem = [
     item: 'TV Shows',
   },
   {
-    href: '#',
-    item: 'Customers',
+    href: '/people',
+    item: 'People',
   },
   {
     href: '#',
