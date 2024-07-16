@@ -1,4 +1,5 @@
 'use client';
+import RenderList from '@/components/render-list';
 import TmdbImage from '@/components/tmdb-image';
 import { Typography } from '@/components/typo';
 import { Badge } from '@/components/ui/badge';
@@ -30,8 +31,9 @@ export default function ListPeople({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 w-full gap-1">
-        {listPeople.map((item: any, index: number) => {
+      <RenderList
+        items={listPeople}
+        renderItem={(item: any, index: number) => {
           return (
             <div
               key={index}
@@ -56,8 +58,8 @@ export default function ListPeople({
               </div>
             </div>
           );
-        })}
-      </div>
+        }}
+      />
       <div className=" flex justify-center">
         <Button onClick={loadMore} variant="outline">
           Load more 👀

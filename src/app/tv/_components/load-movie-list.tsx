@@ -1,4 +1,5 @@
 'use client';
+import RenderList from '@/components/render-list';
 import TmdbImage from '@/components/tmdb-image';
 import { Button } from '@/components/ui/button';
 import { MediaType } from '@/enum/mediaType';
@@ -27,8 +28,9 @@ export default function LoadMovieList({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 w-full">
-        {listMovie.map((item: any, index: number) => {
+      <RenderList
+        items={listMovie}
+        renderItem={(item: any, index: number) => {
           return (
             <TmdbImage
               key={index}
@@ -41,8 +43,8 @@ export default function LoadMovieList({
               className="border-4 border-transparent hover:border-primary hover:scale-105 w-auto"
             />
           );
-        })}
-      </div>
+        }}
+      />
       <div className=" flex justify-center">
         <Button onClick={loadMore} variant="outline">
           Load more 👀
