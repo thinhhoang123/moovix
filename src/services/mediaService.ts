@@ -28,9 +28,21 @@ export async function GetExternalIDs(id: string, type: string) {
   return await response;
 }
 
-export async function GetRecommendations(id: string, type: string) {
+export async function GetRecommendations(id: string, type: string, page = 1) {
   const response = await GET(
-    `${type}/${id}/recommendations?language=en-US&page=1`
+    `${type}/${id}/recommendations?language=en-US&page=${page}`
   );
+  return await response;
+}
+
+export async function GetReviews(id: string, type: string, page = 1) {
+  const response = await GET(
+    `${type}/${id}/reviews?language=en-US&page=${page}`
+  );
+  return await response;
+}
+
+export async function GetKeyword(id: string, type: string) {
+  const response = await GET(`${type}/${id}/keywords`);
   return await response;
 }

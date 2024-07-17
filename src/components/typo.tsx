@@ -1,13 +1,16 @@
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 export function Typography({
   children,
   level = 'p',
   className,
+  href,
 }: {
   children: React.ReactNode;
   level?: string;
   className?: string;
+  href?: string;
 }) {
   switch (level) {
     case 'h1':
@@ -111,6 +114,15 @@ export function Typography({
         >
           {children}
         </p>
+      );
+    case 'link':
+      return (
+        <Link
+          href={href ?? '#'}
+          className="font-medium text-primary underline underline-offset-4"
+        >
+          {children}
+        </Link>
       );
     default:
       return (

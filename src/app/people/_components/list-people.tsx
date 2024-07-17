@@ -37,7 +37,7 @@ export default function ListPeople({
           return (
             <div
               key={index}
-              className="relative border-4 border-transparent hover:border-primary hover:scale-105"
+              className="relative border-4 border-transparent hover:border-primary "
             >
               <TmdbImage
                 src={item.profile_path}
@@ -46,9 +46,9 @@ export default function ListPeople({
                 alt={item.title}
                 type={MediaType.PERSON}
                 id={item.id.toString()}
-                className="w-auto "
+                className="w-auto"
               />
-              <div className="absolute bottom-0 left-0 bg-gradient-to-t  from-black w-full p-2 h-1/2 flex flex-col justify-end gap-2">
+              <div className="absolute bottom-0 left-0 bg-gradient-to-t  from-black w-full p-2 h-1/4 flex flex-col justify-end gap-2">
                 <Typography
                   level="small"
                   className="font-bold shadow-2xl text-white"

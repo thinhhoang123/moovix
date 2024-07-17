@@ -18,6 +18,8 @@ interface IFactMediaProps {
   type?: string;
   original_language: string;
   homepage: string;
+  budget?: string;
+  revenue?: string;
 }
 
 export default function FactMedia({
@@ -29,6 +31,8 @@ export default function FactMedia({
   type,
   original_language,
   homepage,
+  budget,
+  revenue,
 }: IFactMediaProps) {
   return (
     <Card className="w-full p-4 flex flex-col gap-4 h-fit">
@@ -76,6 +80,18 @@ export default function FactMedia({
         <div className="flex flex-col gap-1">
           <Typography level="h4">Original Language</Typography>
           <Typography>{original_language}</Typography>
+        </div>
+      ) : null}
+      {budget ? (
+        <div className="flex flex-col gap-1">
+          <Typography level="h4">Budget</Typography>
+          <Typography>{budget}</Typography>
+        </div>
+      ) : null}
+      {revenue ? (
+        <div className="flex flex-col gap-1">
+          <Typography level="h4">Revenue</Typography>
+          <Typography>{revenue}</Typography>
         </div>
       ) : null}
     </Card>
