@@ -1,3 +1,4 @@
+import RenderList from '@/components/render-list';
 import Title from '@/components/title';
 import TmdbImage from '@/components/tmdb-image';
 import { Button } from '@/components/ui/button';
@@ -9,8 +10,9 @@ export default async function TVOnAir() {
   return (
     <section className="container flex flex-col gap-2 mt-4">
       <Title title="On the air ✈" />
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
-        {data.results.map((item: any, index: number) => {
+      <RenderList
+        items={data.results}
+        renderItem={(item: any, index: number) => {
           return (
             <TmdbImage
               key={index}
@@ -23,8 +25,8 @@ export default async function TVOnAir() {
               className="border-4 border-transparent hover:border-primary hover:scale-105 w-auto"
             />
           );
-        })}
-      </div>
+        }}
+      />
       <div className="w-full flex justify-center">
         <Button>See more TV shows on air</Button>
       </div>

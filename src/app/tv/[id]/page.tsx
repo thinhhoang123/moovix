@@ -6,6 +6,8 @@ import TmdbImage from '@/components/tmdb-image';
 import { MediaType } from '@/enum/mediaType';
 import { GetDetail } from '@/services/mediaService';
 import { Separator } from '@/components/ui/separator';
+import Reviews from '@/components/reviews';
+import Keywords from '@/components/keywords';
 
 export default async function TVId({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -29,21 +31,27 @@ export default async function TVId({ params }: { params: { id: string } }) {
           type={MediaType.TV}
         />
       </div>
-      <div className="grid grid-cols-4 gap-6 container mt-4">
-        <div className="col-span-3 flex flex-col gap-4">
+      <div className="md:grid md:grid-cols-4 flex flex-col-reverse gap-6 container mt-4">
+        <div className="md:col-span-3 flex flex-col gap-4">
           <CastAndCrew type={MediaType.TV} id={id} />
+          <Separator />
+          <Reviews id={id} type={MediaType.TV} />
           <Separator />
           <Recommendations id={id} type={MediaType.TV} />
         </div>
-        <FactMedia
-          id={data.id}
-          mediaType={MediaType.TV}
-          original_name={data.original_name}
-          original_language={data.original_language}
-          status={data.status}
-          type={data.type}
-          networks={data.networks}
-        />
+        <div className="flex flex-col gap-4">
+          <FactMedia
+            id={data.id}
+            mediaType={MediaType.TV}
+            original_name={data.original_name}
+            original_language={data.original_language}
+            status={data.status}
+            type={data.type}
+            networks={data.networks}
+            homepage={data.homepage}
+          />
+          <Keywords id={data.id.toString()} type={MediaType.TV} />
+        </div>
       </div>
     </section>
   );

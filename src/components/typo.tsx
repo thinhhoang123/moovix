@@ -1,13 +1,16 @@
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 export function Typography({
   children,
   level = 'p',
   className,
+  href,
 }: {
   children: React.ReactNode;
   level?: string;
   className?: string;
+  href?: string;
 }) {
   switch (level) {
     case 'h1':
@@ -25,7 +28,7 @@ export function Typography({
       return (
         <h2
           className={cn(
-            'scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0',
+            'scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0',
             className ? className : null
           )}
         >
@@ -111,6 +114,15 @@ export function Typography({
         >
           {children}
         </p>
+      );
+    case 'link':
+      return (
+        <Link
+          href={href ?? '#'}
+          className="font-medium text-primary underline underline-offset-4"
+        >
+          {children}
+        </Link>
       );
     default:
       return (

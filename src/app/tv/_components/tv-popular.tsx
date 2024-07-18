@@ -1,7 +1,7 @@
-import { GetPopular } from '@/services/movieService';
+import { GetPopular } from '@/services/tvService';
 import LoadMovieList from './load-movie-list';
 
-export default async function MoviePopular() {
+export default async function TVPopular() {
   const data = await GetPopular();
 
   return (

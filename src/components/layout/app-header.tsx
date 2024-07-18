@@ -8,8 +8,8 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { ModeToggle } from '../mode-toggle';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import useScroll from '@/hooks/useScroll';
 
 const headerItem = [
   {
@@ -17,12 +17,12 @@ const headerItem = [
     item: 'Movies',
   },
   {
-    href: '#',
-    item: 'Products',
+    href: '/tv',
+    item: 'TV Shows',
   },
   {
-    href: '#',
-    item: 'Customers',
+    href: '/people',
+    item: 'People',
   },
   {
     href: '#',
@@ -32,17 +32,7 @@ const headerItem = [
 export default function AppHeader() {
   const activeItem = 'text-primary font-semibold';
   const pathname = usePathname();
-  const [isScroll, setIsScroll] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScroll(window.scrollY > 100);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const isScroll = useScroll();
 
   return (
     <header
@@ -66,7 +56,7 @@ export default function AppHeader() {
               href={item.href}
               key={item.item}
               className={cn(
-                ' transition-colors hover:text-primary drop-shadow-2xl',
+                ' transition-colors hover:text-primary drop-shadow-2xl text-nowrap',
                 pathname.includes(item.href) ? activeItem : 'text-white'
               )}
             >
@@ -87,12 +77,15 @@ export default function AppHeader() {
         <SheetContent side="left">
           <nav className="grid gap-6 text-lg font-medium">
             <Link
-              href="#"
-              className="flex items-center gap-2 text-lg font-semibold"
+              href="/"
+              className="flex items-center gap-2 text-lg font-semibold md:text-base"
             >
-              <div className="mx-auto grid w-full max-w-6xl gap-2">
-                <h1 className="text-2xl font-bold">Moovix</h1>
-              </div>
+              <Image
+                src="/moovix.svg"
+                height={100}
+                width={200}
+                alt="moovix logo"
+              />
             </Link>
 
             {headerItem.map((item) => {
@@ -102,7 +95,7 @@ export default function AppHeader() {
                   key={item.item}
                   className={cn(
                     'text-muted-foreground transition-colors hover:text-foreground',
-                    pathname.includes(item.href) ? activeItem : 'text-white'
+                    pathname.includes(item.href) ? activeItem : ''
                   )}
                 >
                   {item.item}
@@ -112,6 +105,8 @@ export default function AppHeader() {
           </nav>
         </SheetContent>
       </Sheet>
+
+      {/* Right in header */}
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
         <form className="ml-auto flex-1 sm:flex-initial">
           <div className="relative">
