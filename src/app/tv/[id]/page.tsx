@@ -25,10 +25,10 @@ export default async function TVId({ params }: { params: { id: string } }) {
           id={id}
           title={data.title}
           describe={data.overview}
-          years={data.release_date}
           generes={data.genres}
           duration={data.runtime}
           type={MediaType.TV}
+          years={data.first_air_date}
         />
       </div>
       <div className="md:grid md:grid-cols-4 flex flex-col-reverse gap-6 container mt-4">

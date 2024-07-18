@@ -12,25 +12,18 @@ export default async function Keywords({
   type: MediaType;
 }) {
   const data = await GetKeyword(id, type);
+  const keywords = type === MediaType.TV ? data.results : data.keywords;
   return (
     <Card className="p-4 flex flex-col gap-1">
       <Typography level="h4">Keywords</Typography>
       <div className="flex gap-1 flex-wrap">
-        {type === MediaType.TV
-          ? data.results.map((keyword: any, index: number) => {
-              return (
-                <Badge key={index} variant="outline">
-                  {keyword.name}
-                </Badge>
-              );
-            })
-          : data.keywords.map((keyword: any, index: number) => {
-              return (
-                <Badge key={index} variant="outline">
-                  {keyword.name}
-                </Badge>
-              );
-            })}
+        {keywords.map((keyword: any, index: number) => {
+          return (
+            <Badge key={index} variant="outline">
+              {keyword.name}
+            </Badge>
+          );
+        })}
       </div>
     </Card>
   );

@@ -5,6 +5,10 @@ import TmdbImage from '@/components/tmdb-image';
 import { MediaType } from '@/enum/mediaType';
 import { GetMediaImage } from '@/services/mediaService';
 import { Typography } from './typo';
+import moment from 'moment';
+import { Calendar, Timer } from 'lucide-react';
+import { convertMinutesToHours } from '@/lib/utils';
+import { WatchTrailer } from './watch-trailer-button';
 
 interface MediaInformationProps {
   title: string;
@@ -14,6 +18,7 @@ interface MediaInformationProps {
   generes?: IGenre[];
   duration?: number;
   type: MediaType;
+  keyYoutube?: string;
 }
 
 export default async function MediaInformation({
@@ -24,6 +29,7 @@ export default async function MediaInformation({
   generes,
   duration,
   type,
+  keyYoutube,
 }: MediaInformationProps) {
   const movieImage: IGetMovieImagesResponse = await GetMediaImage(id, type);
   const logo = movieImage?.logos[0]?.file_path;
@@ -36,6 +42,25 @@ export default async function MediaInformation({
             {title}
           </Typography>
         )}
+        <div className="flex gap-4">
+          {years ? (
+            <div className="flex gap-1 items-center">
+              <Calendar className="h-4 w-4 text-white" />
+              <Typography level="muted">
+                {moment(years).format('LL')}
+              </Typography>
+            </div>
+          ) : null}
+          {duration ? (
+            <div className="flex gap-1 items-center">
+              <Timer className="h-4 w-4 text-white" />
+              <Typography level="muted">
+                {convertMinutesToHours(duration)}
+              </Typography>
+            </div>
+          ) : null}
+        </div>
+
         {generes ? (
           <div className="flex gap-2 flex-wrap">
             {generes?.map((genere) => {
@@ -50,6 +75,7 @@ export default async function MediaInformation({
         <Typography level="muted" className="sm:w-full md:w-1/2">
           {describe}
         </Typography>
+        <WatchTrailer keyYoutube={keyYoutube ?? ''} />
       </div>
     </div>
   );
