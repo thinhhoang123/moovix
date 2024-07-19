@@ -11,6 +11,7 @@ import Reviews from '@/components/reviews';
 import { formatCurrency } from '@/lib/utils';
 import Keywords from '@/components/keywords';
 import { GetVideos } from '@/services/movieService';
+import { WatchTrailer } from '@/components/watch-trailer-button';
 
 export default async function MovieId({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -28,7 +29,7 @@ export default async function MovieId({ params }: { params: { id: string } }) {
 
   return (
     <section>
-      <div className="h-screen">
+      <div className="relative h-screen">
         <TmdbImage
           src={data.backdrop_path!}
           fill
@@ -43,7 +44,11 @@ export default async function MovieId({ params }: { params: { id: string } }) {
           generes={data.genres}
           duration={data.runtime}
           type={MediaType.MOVIE}
-          keyYoutube={trailerKey}
+          actions={() => (
+            <>
+              <WatchTrailer keyYoutube={trailerKey} />
+            </>
+          )}
         />
       </div>
       <div className="md:grid md:grid-cols-4 flex flex-col-reverse gap-6 container mt-4 w-screen">
