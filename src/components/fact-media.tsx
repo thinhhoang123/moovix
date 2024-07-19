@@ -61,9 +61,10 @@ export default function FactMedia({
                 <TmdbImage
                   key={network.name}
                   src={network.logo_path}
-                  height={100}
-                  width={100}
+                  height={200}
+                  width={200}
                   alt={network.name}
+                  className="w-full"
                 />
               );
             })}

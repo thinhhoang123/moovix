@@ -4,6 +4,7 @@ import TmdbImage from '@/components/tmdb-image';
 import { Typography } from '@/components/typo';
 import { convertMinutesToHours } from '@/lib/utils';
 import moment from 'moment';
+import Title from '@/components/title';
 
 export default async function EpisodeList({
   seasons,
@@ -15,10 +16,12 @@ export default async function EpisodeList({
   currentSeason: string;
 }) {
   const data = await GetSeasonsDetails(id, currentSeason);
-  console.log(data);
   return (
     <section className="flex flex-col gap-4">
-      <SeasonsSelect seasons={seasons} />
+      <div className="flex items-center justify-between">
+        <Title title="Episodes 🎞" className="w-fit" />
+        <SeasonsSelect seasons={seasons} />
+      </div>
       <div className="flex flex-col gap-4 max-h-[500px] overflow-y-auto">
         {data.episodes.map((episode: any) => {
           return (
