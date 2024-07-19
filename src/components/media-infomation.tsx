@@ -8,7 +8,7 @@ import { Typography } from './typo';
 import moment from 'moment';
 import { Calendar, Timer } from 'lucide-react';
 import { convertMinutesToHours } from '@/lib/utils';
-import { WatchTrailer } from './watch-trailer-button';
+import React from 'react';
 
 interface MediaInformationProps {
   title: string;
@@ -18,7 +18,7 @@ interface MediaInformationProps {
   generes?: IGenre[];
   duration?: number;
   type: MediaType;
-  keyYoutube?: string;
+  actions?: () => React.ReactNode;
 }
 
 export default async function MediaInformation({
@@ -29,7 +29,7 @@ export default async function MediaInformation({
   generes,
   duration,
   type,
-  keyYoutube,
+  actions,
 }: MediaInformationProps) {
   const movieImage: IGetMovieImagesResponse = await GetMediaImage(id, type);
   const logo = movieImage?.logos[0]?.file_path;
@@ -75,7 +75,7 @@ export default async function MediaInformation({
         <Typography level="muted" className="sm:w-full md:w-1/2">
           {describe}
         </Typography>
-        <WatchTrailer keyYoutube={keyYoutube ?? ''} />
+        {actions && actions()}
       </div>
     </div>
   );

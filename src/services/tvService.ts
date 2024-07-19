@@ -14,3 +14,9 @@ export async function GetTopRated(page = 1) {
 export async function GetAirToday(page = 1) {
   return GET(`tv/airing_today?page=${page}`); // Return the API response directly
 }
+export async function GetSeasonsDetails(
+  seriesId: string,
+  seasonNumber: string
+) {
+  return GET(`tv/${seriesId}/season/${seasonNumber}?language=en-US`); // Return the API response directly
+}
