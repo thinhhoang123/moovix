@@ -6,11 +6,22 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { ModeToggle } from '../mode-toggle';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import useScroll from '@/hooks/useScroll';
-
+import { useForm } from 'react-hook-form';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 const headerItem = [
   {
     href: '/movie',
@@ -29,10 +40,27 @@ const headerItem = [
     item: 'Settings',
   },
 ];
+
+const FormSchema = z.object({
+  query: z.string().min(1),
+});
+
 export default function AppHeader() {
   const activeItem = 'text-primary font-semibold';
   const pathname = usePathname();
   const isScroll = useScroll();
+  const searchForm = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      query: '',
+    },
+  });
+  const router = useRouter();
+
+  const onSubmit = (data: z.infer<typeof FormSchema>) => {
+    console.log(data);
+    router.push(`/search?query=${data.query}`);
+  };
 
   return (
     <header
@@ -108,16 +136,33 @@ export default function AppHeader() {
 
       {/* Right in header */}
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-        <form className="ml-auto flex-1 sm:flex-initial">
-          <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search products..."
-              className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
+        <Form {...searchForm}>
+          <form
+            onSubmit={searchForm.handleSubmit(onSubmit)}
+            className="ml-auto flex-1 sm:flex-initial"
+          >
+            <FormField
+              control={searchForm.control}
+              name="query"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <div className="relative">
+                      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        type="search"
+                        placeholder="Search products..."
+                        className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
+                        {...field}
+                      />
+                    </div>
+                  </FormControl>
+                </FormItem>
+              )}
             />
-          </div>
-        </form>
+          </form>
+        </Form>
+
         <ModeToggle />
       </div>
     </header>
