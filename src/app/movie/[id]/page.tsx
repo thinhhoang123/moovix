@@ -7,18 +7,29 @@ import { MediaType } from '@/enum/mediaType';
 import { IMovieDetail } from '@/models/IMovieDetail';
 import { GetDetail } from '@/services/mediaService';
 import { Separator } from '@/components/ui/separator';
-import Title from '@/components/title';
 import Reviews from '@/components/reviews';
 import { formatCurrency } from '@/lib/utils';
 import Keywords from '@/components/keywords';
+import { GetVideos } from '@/services/movieService';
+import { WatchTrailer } from '@/components/watch-trailer-button';
 
 export default async function MovieId({ params }: { params: { id: string } }) {
   const { id } = params;
-  const data: IMovieDetail = await GetDetail(id, MediaType.MOVIE);
-  console.log(data);
+  const [data, videos] = await Promise.all([
+    GetDetail(id, MediaType.MOVIE),
+    GetVideos(id),
+  ]);
+
+  const trailerKey =
+    videos.results.length > 0
+      ? videos.results.find(
+          (video: any) => video.official && video.type === 'Trailer'
+        ).key
+      : '';
+
   return (
     <section>
-      <div className="h-screen">
+      <div className="relative h-screen">
         <TmdbImage
           src={data.backdrop_path!}
           fill
@@ -33,6 +44,11 @@ export default async function MovieId({ params }: { params: { id: string } }) {
           generes={data.genres}
           duration={data.runtime}
           type={MediaType.MOVIE}
+          actions={() => (
+            <>
+              <WatchTrailer keyYoutube={trailerKey} />
+            </>
+          )}
         />
       </div>
       <div className="md:grid md:grid-cols-4 flex flex-col-reverse gap-6 container mt-4 w-screen">

@@ -11,3 +11,9 @@ export function formatCurrency(value: number) {
     currency: 'USD',
   });
 }
+
+export function convertMinutesToHours(minutes: number) {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  return hours === 0 ? `${mins}m` : `${hours}h ${mins}m`;
+}

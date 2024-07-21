@@ -12,17 +12,19 @@ export default function ListPeople({
   data,
   initPage = 1,
   service,
+  query,
 }: {
   data: any;
   initPage: number;
-  service: (number: number) => void;
+  service: (number: number, query?: string) => void;
+  query?: string;
 }) {
   const [listPeople, setListPeople] = useState(data);
   const [page, setPage] = useState(initPage);
 
   const loadMore = async () => {
     const nextPage = page + 1;
-    const res: any = await service(nextPage);
+    const res: any = await service(nextPage, query);
     setListPeople((prev: any) => {
       return [...prev, ...res.results];
     });

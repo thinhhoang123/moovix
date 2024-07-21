@@ -27,3 +27,6 @@ export async function GetPopular(page = 1) {
 export async function GetNowPlaying(page = 1) {
   return GET(`movie/now_playing?page=${page}`); // Return the API response directly
 }
+export async function GetVideos(id: string) {
+  return GET(`movie/${id}/videos?language=en-US`); // Return the API response directly
+}
