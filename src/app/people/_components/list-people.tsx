@@ -46,7 +46,7 @@ export default function ListPeople({
                 width={200}
                 height={200}
                 alt={item.title}
-                type={MediaType.PERSON}
+                type={MediaType.PEOPLE}
                 id={item.id.toString()}
                 className="w-auto"
               />

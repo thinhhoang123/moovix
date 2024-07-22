@@ -34,7 +34,7 @@ export default async function SearchPage({
     },
     {
       name: `People (${people.total_results})`,
-      value: MediaType.PERSON,
+      value: MediaType.PEOPLE,
     },
   ];
   const tabContents = [
@@ -61,7 +61,7 @@ export default async function SearchPage({
       ),
     },
     {
-      tab: MediaType.PERSON,
+      tab: MediaType.PEOPLE,
       content: (
         <ListPeople
           data={people.results}
