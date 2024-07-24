@@ -8,6 +8,7 @@ import {
 } from '@/services/searchService';
 import LoadMovieList from '../movie/_components/load-movie-list';
 import ListPeople from '../people/_components/list-people';
+import LoadTVList from '../tv/_components/load-movie-list';
 
 export default async function SearchPage({
   searchParams,
@@ -52,10 +53,10 @@ export default async function SearchPage({
     {
       tab: MediaType.TV,
       content: (
-        <LoadMovieList
+        <LoadTVList
           data={tvs.results}
           initPage={1}
-          service={GetMovieSearch}
+          service={GetTVSearch}
           query={query}
         />
       ),

@@ -7,6 +7,7 @@ import { Card } from './ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Typography } from './typo';
 import moment from 'moment';
+import { ScrollArea } from './ui/scroll-area';
 
 export default async function Reviews({
   id,
@@ -26,7 +27,7 @@ export default async function Reviews({
         </Typography>
       </div>
       {firstReview && (
-        <Card className="p-4 flex flex-col gap-4 max-h-60 overflow-y-auto">
+        <Card className="p-4 flex flex-col gap-4 max-h-72">
           <div className="flex gap-4 align-top">
             <Avatar>
               <AvatarImage
@@ -42,9 +43,9 @@ export default async function Reviews({
               </Typography>
             </div>
           </div>
-          <div>
+          <ScrollArea className="h-72">
             <Typography>{firstReview.content.toString()}</Typography>
-          </div>
+          </ScrollArea>
         </Card>
       )}
     </section>
