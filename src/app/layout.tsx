@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { AppLayout } from '@/components/layout/app-layout';
 import { ThemeProvider } from '@/providers/theme-provider';
 
-const fontSans = Inter({
+const fontSans = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-sans',
 });
@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >

@@ -30,6 +30,8 @@ export default async function CastAndCrew({
                   width={100}
                   height={100}
                   className="w-32 h-32 rounded-full object-cover drop-shadow-md"
+                  type={MediaType.PEOPLE}
+                  id={item.id}
                 />
                 <Typography className="text-center">{item.name}</Typography>
                 <Typography level="muted" className="text-center">

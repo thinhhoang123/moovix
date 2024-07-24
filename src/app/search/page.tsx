@@ -8,6 +8,7 @@ import {
 } from '@/services/searchService';
 import LoadMovieList from '../movie/_components/load-movie-list';
 import ListPeople from '../people/_components/list-people';
+import LoadTVList from '../tv/_components/load-movie-list';
 
 export default async function SearchPage({
   searchParams,
@@ -34,7 +35,7 @@ export default async function SearchPage({
     },
     {
       name: `People (${people.total_results})`,
-      value: MediaType.PERSON,
+      value: MediaType.PEOPLE,
     },
   ];
   const tabContents = [
@@ -52,16 +53,16 @@ export default async function SearchPage({
     {
       tab: MediaType.TV,
       content: (
-        <LoadMovieList
+        <LoadTVList
           data={tvs.results}
           initPage={1}
-          service={GetMovieSearch}
+          service={GetTVSearch}
           query={query}
         />
       ),
     },
     {
-      tab: MediaType.PERSON,
+      tab: MediaType.PEOPLE,
       content: (
         <ListPeople
           data={people.results}
